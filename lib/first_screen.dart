@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin/login_page.dart';
 import 'package:flutter_signin/sign_in.dart';
+import 'package:flutter_signin/blank_screen.dart';
 
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text("Stylists"),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () => _onSelectItem(context),
+            ),
+            ListTile(
+              title: Text("Search"),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () => _onSelectItem(context),
+            ),
+          ],
+        )
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -80,4 +98,11 @@ class FirstScreen extends StatelessWidget {
       ),
     );
   }
-}
+
+  _onSelectItem(BuildContext context) {
+    // setState(() => _selectedDrawerIndex = index);
+    // Navigator.of(context).pop(); // close the drawer
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return BlankScreen();}), ModalRoute.withName('/'));
+
+  }
+} 
